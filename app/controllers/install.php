@@ -22,6 +22,8 @@ class install
         \models\user::setup();
         \models\login::setdown();
         \models\login::setup();
+        \models\role::setdown();
+        \models\role::setup();
 
         $this->nastavRole([
             ['name'=>'admin','description'=>'Administrátor'],
