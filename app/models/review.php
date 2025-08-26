@@ -1,0 +1,25 @@
+<?php
+namespace models;
+class review extends \DB\Cortex
+{
+    protected $db = 'DB',
+        $table = 'review';
+    protected $fieldConf=[
+        'user'=>[
+            'belongs-to-one'=>'models\user'
+        ],
+        'header'=>[
+            'type'=>'VARCHAR128',
+            'required'=>true
+        ],
+        'review_text'=>[
+            'type'=>'VARCHAR256',
+            'default'=>0
+        ],
+        'rating'=>[
+            'type'=>'INT',
+            'required'=>true,
+            'default'=>0
+            ]
+    ];
+}

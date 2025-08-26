@@ -20,20 +20,47 @@ class user extends \DB\Cortex
             'required' => true,
             'unique' => true,
         ],
+        'date_of_birth' => [
+            'type' => 'DATE',
+            'required' => true,
+        ],
         'password' => [
             'type' => 'TEXT',
             'required' => true,
+        ],
+        'phone_number' => [
+            'type' => 'VARCHAR32',
+            'required' => false,
+            'nullable' => true,
+        ],
+        'weight' => [
+            'type' => 'DOUBLE',
+            'required' => false,
+            'nullable' => true,
+        ],
+        'medications' => [
+            'type' => 'VARCHAR256',
+            'required' => false,
+            'nullable' => true,
+        ],
+        'approved' => [
+            'type' => 'INT',
+            'required' => true,
+            'default' => 0
+        ],
+        'diet' => [
+            'has-one' => 'models\diet',
         ],
         'role' => [
             'belongs-to-one' => 'models\role',
             'default' => 3
         ],
-        'dochazka' => [
-            'has-many' => 'models\dochazka',
-        ],
         'login' => [
             'has-many' => 'models\login'
         ],
+        'review' => [
+            'has-one' => 'models\review'
+        ]
     ];
     public function set_password($value)
     {
