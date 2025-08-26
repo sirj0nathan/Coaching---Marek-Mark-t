@@ -1,0 +1,17 @@
+<include href="header.html" />
+
+<include href="menu.html" />
+
+<include href="flash.html" />
+<main class="container">
+    <check if="{{isset(@content)}}">
+        <true>
+            <include href="{{@content}}" />
+        </true>
+        <false>
+            <h1>Žádná data k zobrazení</h1>
+        </false>
+    </check>
+</main>
+
+<include href="footer.html" />
