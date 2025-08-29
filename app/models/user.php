@@ -5,8 +5,13 @@ namespace models;
 class user extends \DB\Cortex
 {
     protected $db = 'DB',
-        $table = 'User';
+        $table = 'user';
     protected $fieldConf = [
+        'email' => [
+            'type' => 'VARCHAR128',
+            'required' => true,
+            'unique' => true,
+        ],
         'name' => [
             'type' => 'VARCHAR128',
             'required' => true,
@@ -14,11 +19,6 @@ class user extends \DB\Cortex
         'surname' => [
             'type' => 'VARCHAR128',
             'required' => true,
-        ],
-        'email' => [
-            'type' => 'VARCHAR128',
-            'required' => true,
-            'unique' => true,
         ],
         'date_of_birth' => [
             'type' => 'DATE',
@@ -29,7 +29,7 @@ class user extends \DB\Cortex
             'required' => true,
         ],
         'phone_number' => [
-            'type' => 'VARCHAR32',
+            'type' => 'VARCHAR128',
             'required' => false,
             'nullable' => true,
         ],
@@ -44,7 +44,7 @@ class user extends \DB\Cortex
             'nullable' => true,
         ],
         'approved' => [
-            'type' => 'INT',
+            'type' => 'INT8',
             'required' => true,
             'default' => 0
         ],
