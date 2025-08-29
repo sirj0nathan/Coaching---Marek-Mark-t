@@ -1,0 +1,122 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>{{ @title }}</h3>
+                    <a href="/user/edit" class="btn btn-primary">
+                        <i class="bi bi-pencil"></i> Upravit profil
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Jméno:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ @user.name | esc }} {{ @user.surname | esc }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Email:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ @user.email | esc }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Telefon:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <check if="{{ @user.phone_number }}">
+                                <true>{{ @user.phone_number | esc }}</true>
+                                <false><em>Nezadáno</em></false>
+                            </check>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Datum narození:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ @user.date_of_birth | esc }}
+                        </div>
+                    </div>
+
+                    <check if="{{ @user.weight }}">
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <strong>Váha:</strong>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ @user.weight | esc }} kg
+                            </div>
+                        </div>
+                    </check>
+
+                    <check if="{{ @user.medications }}">
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <strong>Léky:</strong>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ @user.medications | esc }}
+                            </div>
+                        </div>
+                    </check>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Stravovací informace</h4>
+                </div>
+                <div class="card-body">
+                    <check if="{{ isset(@diet) }}">
+                        <true>
+                            <check if="{{ @diet.alergies }}">
+                                <div class="mb-3">
+                                    <strong>Alergie:</strong><br>
+                                    {{ @diet.alergies | esc }}
+                                </div>
+                            </check>
+
+                            <check if="{{ @diet.dietary_preferences }}">
+                                <div class="mb-3">
+                                    <strong>Stravovací preference:</strong><br>
+                                    {{ @diet.dietary_preferences | esc }}
+                                </div>
+                            </check>
+
+                            <check if="{{ @diet.dietary_restrictions }}">
+                                <div class="mb-3">
+                                    <strong>Stravovací omezení:</strong><br>
+                                    {{ @diet.dietary_restrictions | esc }}
+                                </div>
+                            </check>
+
+                            <check if="{{ @diet.diet_href }}">
+                                <div class="mb-3">
+                                    <strong>Odkaz na dietu:</strong><br>
+                                    <a href="{{ @diet.diet_href | esc }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-link-45deg"></i> Zobrazit dietu
+                                    </a>
+                                </div>
+                            </check>
+                        </true>
+                        <false>
+                            <p class="text-muted">Žádné stravovací informace nejsou zadány.</p>
+                        </false>
+                    </check>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

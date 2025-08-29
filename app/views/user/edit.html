@@ -1,0 +1,85 @@
+<check if="{{isset(@user)}}">
+    <true>
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-pencil"></i> Upravit profil</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/user/edit">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Jméno *</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{@user.name | esc}}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{@user.email | esc}}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon</label>
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{@user.phone | esc}}">
+                            </div>
+
+
+                            <hr>
+                            <h6>Dietní informace</h6>
+
+                            <div class="mb-3">
+                                <label for="alergies" class="form-label">Alergie</label>
+                                <textarea class="form-control" id="alergies" name="alergies" rows="3">{{isset(@diet.alergies) ? @diet.alergies : '' | esc}}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="dietary_preferences" class="form-label">Stravovací preference</label>
+                                <textarea class="form-control" id="dietary_preferences" name="dietary_preferences" rows="3">{{isset(@diet.dietary_preferences) ? @diet.dietary_preferences : '' | esc}}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="dietary_restrictions" class="form-label">Dietní omezení</label>
+                                <textarea class="form-control" id="dietary_restrictions" name="dietary_restrictions" rows="3">{{isset(@diet.dietary_restrictions) ? @diet.dietary_restrictions : '' | esc}}</textarea>
+                            </div>
+
+                            <hr>
+                            <h6>Změna hesla (volitelné)</h6>
+
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Současné heslo</label>
+                                <input type="password" class="form-control" id="current_password" name="current_password">
+                                <small class="form-text text-muted">Vyplňte pouze pokud chcete změnit heslo</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">Nové heslo</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password" minlength="6">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Potvrdit nové heslo</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="6">
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="/user/profile" class="btn btn-secondary me-md-2">
+                                    <i class="bi bi-arrow-left"></i> Zpět
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check"></i> Uložit změny
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </true>
+    <false>
+        <div class="alert alert-warning">
+            <h4>Chyba</h4>
+            <p>Nepodařilo se načíst údaje pro úpravu profilu.</p>
+            <a href="/user/profile" class="btn btn-primary">Zpět na profil</a>
+        </div>
+    </false>
+</check>
