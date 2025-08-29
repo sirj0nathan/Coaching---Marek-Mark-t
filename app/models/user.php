@@ -51,6 +51,9 @@ class user extends \DB\Cortex
         'diet' => [
             'has-one' => 'models\diet',
         ],
+        'diary' => [
+            'has-many' => 'models\diary'
+        ],
         'role' => [
             'belongs-to-one' => 'models\role',
             'default' => 3

@@ -8,9 +8,19 @@
                     </div>
                     <div class="card-body">
                         <form method="post" action="/user/edit">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Jméno *</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{@user.name | esc}}" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Jméno *</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{@user.name | esc}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="surname" class="form-label">Příjmení *</label>
+                                        <input type="text" class="form-control" id="surname" name="surname" value="{{@user.surname | esc}}" required>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -20,9 +30,28 @@
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Telefon</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{@user.phone | esc}}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{@user.phone_number | esc}}">
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="date_of_birth" class="form-label">Datum narození *</label>
+                                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{@user.date_of_birth | esc}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="weight" class="form-label">Váha (kg)</label>
+                                        <input type="number" step="0.1" min="0" max="500" class="form-control" id="weight" name="weight" value="{{@user.weight | esc}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="medications" class="form-label">Předepsané léky</label>
+                                <textarea class="form-control" id="medications" name="medications" rows="3" placeholder="Napište všechny léky, které užíváte...">{{@user.medications | esc}}</textarea>
+                            </div>
 
                             <hr>
                             <h6>Dietní informace</h6>

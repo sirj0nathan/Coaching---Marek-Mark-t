@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>{{ @entry.title }}</h3>
+                <div>
+                    <a href="/diary/edit/{{ @entry.id }}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-pencil"></i> Upravit
+                    </a>
+                    <a href="/diary/delete/{{ @entry.id }}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Opravdu chcete smazat tento zápis?')">
+                        <i class="bi bi-trash"></i> Smazat
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5>Obsah:</h5>
+                    <div class="border-start border-4 border-primary ps-3">
+                        {{ nl2br(@entry.content) | raw }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <check if="{{ @entry.mood }}">
+                        <div class="col-md-3">
+                            <strong>Nálada:</strong><br>
+                            <span class="badge bg-secondary">{{ @entry.mood }}</span>
+                        </div>
+                    </check>
+
+                    <check if="{{ @entry.weight }}">
+                        <div class="col-md-3">
+                            <strong>Váha:</strong><br>
+                            {{ @entry.weight }} kg
+                        </div>
+                    </check>
+
+                    <check if="{{ @entry.exercise }}">
+                        <div class="col-md-3">
+                            <strong>Cvičení:</strong><br>
+                            {{ @entry.exercise }}
+                        </div>
+                    </check>
+
+                    <div class="col-md-3">
+                        <strong>Datum:</strong><br>
+                        {{ date('d.m.Y H:i', strtotime(@entry.created)) }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="/diary" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Zpět na deník
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

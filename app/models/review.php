@@ -8,7 +8,7 @@ class review extends \DB\Cortex
         'user'=>[
             'belongs-to-one'=>'models\user'
         ],
-        'header'=>[
+        'title'=>[
             'type'=>'VARCHAR128',
             'required'=>true
         ],
@@ -17,7 +17,7 @@ class review extends \DB\Cortex
             'default'=>0
         ],
         'rating'=>[
-            'type'=>'INT',
+            'type'=>'INT8',
             'required'=>true,
             'default'=>0
             ]

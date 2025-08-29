@@ -18,15 +18,20 @@ class install
 
     public function setup()
     {
-        \models\user::setdown();
-        \models\user::setup();
-        \models\login::setdown();
-        \models\login::setup();
-        \models\role::setdown();
-        \models\role::setup();
-        \models\diet::setdown();
-        \models\diet::setup();
 
+        \models\review::setdown();
+        \models\diary::setdown();
+        \models\diet::setdown();
+        \models\login::setdown();
+        \models\user::setdown();
+        \models\role::setdown();
+
+        \models\role::setup();
+        \models\user::setup();
+        \models\login::setup();
+        \models\diet::setup();
+        \models\diary::setup();
+        \models\review::setup();
 
         $this->nastavRole([
             ['name'=>'admin','description'=>'Administrátor'],

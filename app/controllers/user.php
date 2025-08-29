@@ -12,34 +12,37 @@ class user
         \Flash::instance()->addMessage('Uzivatel byl zaslan pro overeni', 'success');
         $base->reroute('/');
     }
+
     public function getRegister(\Base $base)
     {
         $base->set('title', 'Register');
         $base->set('content', '/user/register.html');
         echo \Template::instance()->render('index.html');
     }
+
     public function getLogin(\Base $base)
     {
         $base->set('title', 'Prihlaseni');
         $base->set('content', '/user/login.html');
         echo \Template::instance()->render('index.html');
     }
+
     public function postLogin(\Base $base)
     {
         $uzivatel = new \models\User();
         $uz = $uzivatel->findone(['email=?', $base->get('POST.email')]);
-        if($uz === false){
+        if ($uz === false) {
             \Flash::instance()->addMessage('Uživatel neexistuje', 'danger');
             $base->reroute('/login');
         }
         $login = new \models\login();
         $login->user = $uz;
-        if(!password_verify($base->get('POST.password'), $uz->password)){
+        if (!password_verify($base->get('POST.password'), $uz->password)) {
             \Flash::instance()->addMessage('Špatné heslo, nebo jmeno', 'danger');
             $login->save();
             $base->reroute('/login');
         }
-        if($uz->approved == 0){
+        if ($uz->approved == 0) {
             \Flash::instance()->addMessage('Uživatel není schválen adminem', 'danger');
             $login->save();
             $base->reroute('/login');
@@ -55,6 +58,7 @@ class user
         \Flash::instance()->addMessage('Uživatel prihlášen', 'success');
         $base->reroute('/');
     }
+
     public function getLogout(\Base $base)
     {
         $base->clear('SESSION');
@@ -138,9 +142,20 @@ class user
         $uzivatel->load(["id=?", $base->get('SESSION.uid')]);
 
         $uzivatel->name = $base->get('POST.name');
+        $uzivatel->surname = $base->get('POST.surname');
         $uzivatel->email = $base->get('POST.email');
+        $uzivatel->date_of_birth = $base->get('POST.date_of_birth');
+
         if ($base->get('POST.phone')) {
-            $uzivatel->phone_number = $base->get('POST.phone'); // Změna zde
+            $uzivatel->phone_number = $base->get('POST.phone');
+        }
+
+        if ($base->get('POST.weight')) {
+            $uzivatel->weight = $base->get('POST.weight');
+        }
+
+        if ($base->get('POST.medications')) {
+            $uzivatel->medications = $base->get('POST.medications');
         }
 
         // Handle password change
