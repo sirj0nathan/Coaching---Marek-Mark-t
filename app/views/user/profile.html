@@ -14,7 +14,7 @@
                             <strong>Jméno:</strong>
                         </div>
                         <div class="col-sm-9">
-                            {{ @user.name | esc }} {{ @user.surname | esc }}
+                            {{ @user.name }} {{ @user.surname }}
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
                             <strong>Email:</strong>
                         </div>
                         <div class="col-sm-9">
-                            {{ @user.email | esc }}
+                            {{ @user.email }}
                         </div>
                     </div>
 
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-sm-9">
                             <check if="{{ @user.phone_number }}">
-                                <true>{{ @user.phone_number | esc }}</true>
+                                <true>{{ @user.phone_number }}</true>
                                 <false><em>Nezadáno</em></false>
                             </check>
                         </div>
@@ -44,7 +44,7 @@
                             <strong>Datum narození:</strong>
                         </div>
                         <div class="col-sm-9">
-                            {{ @user.date_of_birth | esc }}
+                            {{ @user.date_of_birth }}
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
                                 <strong>Váha:</strong>
                             </div>
                             <div class="col-sm-9">
-                                {{ @user.weight | esc }} kg
+                                {{ @user.weight }} kg
                             </div>
                         </div>
                     </check>
@@ -65,7 +65,7 @@
                                 <strong>Léky:</strong>
                             </div>
                             <div class="col-sm-9">
-                                {{ @user.medications | esc }}
+                                {{ @user.medications }}
                             </div>
                         </div>
                     </check>
@@ -84,35 +84,45 @@
                             <check if="{{ @diet.alergies }}">
                                 <div class="mb-3">
                                     <strong>Alergie:</strong><br>
-                                    {{ @diet.alergies | esc }}
+                                    {{ @diet.alergies }}
                                 </div>
                             </check>
 
                             <check if="{{ @diet.dietary_preferences }}">
                                 <div class="mb-3">
                                     <strong>Stravovací preference:</strong><br>
-                                    {{ @diet.dietary_preferences | esc }}
+                                    {{ @diet.dietary_preferences }}
                                 </div>
                             </check>
 
                             <check if="{{ @diet.dietary_restrictions }}">
                                 <div class="mb-3">
                                     <strong>Stravovací omezení:</strong><br>
-                                    {{ @diet.dietary_restrictions | esc }}
+                                    {{ @diet.dietary_restrictions }}
                                 </div>
                             </check>
 
-                            <check if="{{ @diet.diet_href }}">
-                                <div class="mb-3">
-                                    <strong>Odkaz na dietu:</strong><br>
-                                    <a href="{{ @diet.diet_href | esc }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-link-45deg"></i> Zobrazit dietu
-                                    </a>
-                                </div>
-                            </check>
+                            <div class="mb-3">
+                                <strong>Dietní plán:</strong><br>
+                                <check if="{{ @diet.diet_href }}">
+                                    <true>
+                                        <a href="{{ @diet.diet_href }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success">
+                                            <i class="bi bi-google"></i> Otevřít jídelníček na Google Drive
+                                        </a>
+                                    </true>
+                                    <false>
+                                        <em class="text-muted">Trenér Vám ještě nepřidělil žádný jídelníček</em>
+                                    </false>
+                                </check>
+                            </div>
                         </true>
                         <false>
-                            <p class="text-muted">Žádné stravovací informace nejsou zadány.</p>
+                            <p class="text-muted">Žádné stravovací informace nejsou zadány.
+                                Doplň je prosím co nejdříve, ať Ti můžeme připravit jídelníček podle tvých potřeb!</p>
+                            <div class="mb-3">
+                                <strong>Dietní plán:</strong><br>
+                                <em class="text-muted">Trenér Vám ještě nepřidělil žádný jídelníček</em>
+                            </div>
                         </false>
                     </check>
                 </div>
