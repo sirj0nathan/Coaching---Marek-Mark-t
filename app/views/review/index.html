@@ -1,0 +1,63 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>{{ @title }}</h3>
+                    <check if="{{ @review }}">
+                        <true>
+                            <div>
+                                <a href="/review/edit" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Upravit
+                                </a>
+                                <a href="/review/delete" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Opravdu chcete smazat své hodnocení?')">
+                                    <i class="bi bi-trash"></i> Smazat
+                                </a>
+                            </div>
+                        </true>
+                        <false>
+                            <a href="/review/create" class="btn btn-success">
+                                <i class="bi bi-star"></i> Vytvořit hodnocení
+                            </a>
+                        </false>
+                    </check>
+                </div>
+                <div class="card-body">
+                    <check if="{{ @review }}">
+                        <true>
+                            <div class="mb-4">
+                                <h4>{{ @review.title }}</h4>
+                                <div class="rating-display mb-3">
+                                    <repeat group="{{ range(1, 5) }}" value="{{ @star }}">
+                                        <check if="{{ @star <= @review.rating }}">
+                                            <true><i class="bi bi-star-fill text-warning"></i></true>
+                                            <false><i class="bi bi-star text-muted"></i></false>
+                                        </check>
+                                    </repeat>
+                                    <span class="ms-2">({{ @review.rating }}/5)</span>
+                                </div>
+                                <check if="{{ @review.review_text }}">
+                                    <div class="border-start border-4 border-primary ps-3">
+                                        <strong>Váš komentář:</strong><br>
+                                        {{ nl2br(@review.review_text) | raw }}
+                                    </div>
+                                </check>
+                            </div>
+                        </true>
+                        <false>
+                            <div class="text-center py-5">
+                                <i class="bi bi-star display-1 text-muted"></i>
+                                <h4 class="mt-3">Zatím jste nevytvořili hodnocení</h4>
+                                <p class="text-muted">Podělte se s námi o svou zkušenost s naším trenérem</p>
+                                <a href="/review/create" class="btn btn-success btn-lg">
+                                    <i class="bi bi-star"></i> Vytvořit hodnocení
+                                </a>
+                            </div>
+                        </false>
+                    </check>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

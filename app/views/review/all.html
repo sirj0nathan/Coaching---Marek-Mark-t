@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ @title }}</h3>
+        </div>
+        <div class="card-body">
+            <check if="{{ @reviews }}">
+                <true>
+                    <div class="row">
+                        <repeat group="{{ @reviews }}" value="{{ @review }}">
+                            <div class="col-md-6 mb-4">
+                                <div class="card border-secondary">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <strong>{{ @review.user.name }} {{ @review.user.surname }}</strong>
+                                            <div class="rating-display">
+                                                <repeat group="{{ range(1, 5) }}" value="{{ @star }}">
+                                                    <check if="{{ @star <= @review.rating }}">
+                                                        <true><i class="bi bi-star-fill text-warning"></i></true>
+                                                        <false><i class="bi bi-star text-muted"></i></false>
+                                                    </check>
+                                                </repeat>
+                                                <span class="ms-1">({{ @review.rating }}/5)</span>
+                                            </div>
+                                        </div>
+                                        <h5 class="mt-2 mb-0">{{ @review.title }}</h5>
+                                    </div>
+                                    <check if="{{ @review.review_text }}">
+                                        <div class="card-body">
+                                            {{ nl2br(@review.review_text) | raw }}
+                                        </div>
+                                    </check>
+                                    <div class="card-footer text-muted small">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                <i class="bi bi-envelope"></i>
+                                                {{ @review.user.email }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </repeat>
+                    </div>
+                </true>
+                <false>
+                    <div class="text-center py-5">
+                        <i class="bi bi-star display-1 text-muted"></i>
+                        <h4 class="mt-3">Zatím nejsou žádná hodnocení</h4>
+                        <p class="text-muted">Hodnocení od uživatelů se zobrazí zde</p>
+                    </div>
+                </false>
+            </check>
+        </div>
+    </div>
+</div>

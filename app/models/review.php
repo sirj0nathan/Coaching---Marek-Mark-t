@@ -8,6 +8,11 @@ class review extends \DB\Cortex
         'user'=>[
             'belongs-to-one'=>'models\user'
         ],
+        'rating' => [
+            'type' => 'INT8',
+            'required' => true,
+            'default' => 0
+        ],
         'title'=>[
             'type'=>'VARCHAR128',
             'required'=>true
