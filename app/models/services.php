@@ -16,7 +16,7 @@ class services extends \DB\Cortex
             'nullable' => true,
         ],
         'price' => [
-            'type' => 'FLOAT8',
+            'type' => 'FLOAT',
             'required' => false,
             'nullable' => true,
         ]

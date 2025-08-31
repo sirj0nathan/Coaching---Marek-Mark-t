@@ -10,7 +10,7 @@
                         <div class="mb-3">
                             <label for="title" class="form-label">Název hodnocení (povinné)</label>
                             <input type="text" class="form-control" id="title" name="title"
-                                   value="{{ @review.title }}" required>
+                                   value="{{ @review.title | esc }}" required>
                         </div>
 
                         <div class="mb-4">
@@ -18,7 +18,7 @@
                             <div class="rating-input">
                                 <repeat group="{{ range(1, 5) }}" value="{{ @star }}">
                                     <input type="radio" name="rating" value="{{ @star }}" id="star{{ @star }}"
-                                    <check if="{{ @star == @review.rating }}">checked</check> required>
+                                           {{ (@star == @review.rating) ? 'checked' : '' }} required>
                                     <label for="star{{ @star }}" class="star-label">
                                         <i class="bi bi-star"></i>
                                     </label>
@@ -30,7 +30,7 @@
                         <div class="mb-4">
                             <label for="review_text" class="form-label">Komentář (volitelné)</label>
                             <textarea class="form-control" id="review_text" name="review_text" rows="5"
-                                      placeholder="Napište zde svou zkušenost s trenérem...">{{ @review.review_text }}</textarea>
+                                      placeholder="Napište zde svou zkušenost s trenérem...">{{ (@review.review_text ?? '') | esc }}</textarea>
                         </div>
 
                         <div class="d-flex justify-content-between">

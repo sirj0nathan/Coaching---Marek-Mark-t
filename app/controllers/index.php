@@ -14,9 +14,8 @@ class index
         $reviewModel = new \models\review();
         $reviews = $reviewModel->find(['1=1'], ['order' => 'RAND()', 'limit' => 6]);
 
-        if ($reviews) {
-            $base->set('reviews', $reviews);
-        }
+        // Always set the reviews variable, even if it's empty
+        $base->set('reviews', $reviews ?: []);
 
         $base->set('title', 'O nás');
         $base->set('content', 'home/about.html');

@@ -20,11 +20,6 @@ class review extends \DB\Cortex
         'review_text'=>[
             'type'=>'VARCHAR256',
             'default'=>0
-        ],
-        'rating'=>[
-            'type'=>'INT8',
-            'required'=>true,
-            'default'=>0
-            ]
+        ]
     ];
 }

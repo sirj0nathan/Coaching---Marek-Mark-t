@@ -20,18 +20,20 @@ class install
     {
 
         \models\review::setdown();
-        \models\diary::setdown();
-        \models\diet::setdown();
-        \models\login::setdown();
-        \models\user::setdown();
-        \models\role::setdown();
+        //\models\diary::setdown();
+        //\models\diet::setdown();
+        //\models\login::setdown();
+        //\models\user::setdown();
+        //\models\role::setdown();
+        //\models\services::setdown();
 
-        \models\role::setup();
-        \models\user::setup();
-        \models\login::setup();
-        \models\diet::setup();
-        \models\diary::setup();
+        //\models\role::setup();
+        //\models\user::setup();
+        //\models\login::setup();
+        //\models\diet::setup();
+        //\models\diary::setup();
         \models\review::setup();
+        //\models\services::setup();
 
         $this->nastavRole([
             ['name'=>'admin','description'=>'Administrátor'],
