@@ -19,12 +19,6 @@ class contact
         $subject = $base->get('POST.subject');
         $message = $base->get('POST.message');
 
-        // Simple validation
-        if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-            $base->set('error', 'Prosím vyplňte všechna povinná pole.');
-            return $this->getContact($base);
-        }
-
         $contact = new \models\contact();
         $contact->name = $name;
         $contact->email = $email;
@@ -34,7 +28,7 @@ class contact
         $contact->time = date('Y-m-d H:i:s');
         $contact->save();
 
-        $base->set('success', 'Děkujeme za vaši zprávu. Ozveme se vám co nejdříve.');
-        return $this->getContact($base);
+        \Flash::instance()->addMessage('Zpráva byla úspěšně odeslána. Ozveme se Vám co nejdříve.', 'success');
+        $base->reroute('/contact');
     }
 }
