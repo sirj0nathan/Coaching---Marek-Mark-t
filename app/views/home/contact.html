@@ -1,0 +1,28 @@
+<form method="post">
+    <div class="mb-3">
+        <label for="name" class="form-label">Jméno (povinné)</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Vaše jméno" required>
+    </div>
+
+    <div>
+        <label for="phone" class="form-label">Telefon (povinné)</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Předmět zprávy" required>
+    </div>
+
+    <div>
+        <label for="subject" class="form-label">Předmět (povinné)</label>
+        <input type="text" class="form-control" id="subject" name="subject" placeholder="Předmět zprávy" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email (povinné)</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Váš email" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="message" class="form-label">Zpráva (povinné)</label>
+        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Napište zde svou zprávu..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Odeslat zprávu</button>
+</form>
