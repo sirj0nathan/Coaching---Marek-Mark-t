@@ -1,0 +1,143 @@
+<div class="admin-services-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2>Správa služeb</h2>
+                <p class="text-muted">Přidávejte, upravujte a mažte služby v systému</p>
+            </div>
+        </div>
+
+        <!-- Add/Edit Service Form -->
+        <div class="row mb-5">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Přidat novou službu</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/services" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Název služby</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Popis služby</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Cena (Kč)</label>
+                                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Přidat službu</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Seznam služeb</h5>
+                    </div>
+                    <div class="card-body">
+                        <check if="{{ count(@services) > 0 }}">
+                            <true>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Název</th>
+                                            <th>Popis</th>
+                                            <th>Cena (Kč)</th>
+                                            <th>Akce</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <repeat group="{{ @services }}" value="{{ @service }}">
+                                            <tr>
+                                                <td>{{ @service.id }}</td>
+                                                <td>{{ @service.name | esc }}</td>
+                                                <td>{{ @service.description | esc }}</td>
+                                                <td>{{ @service.price | esc }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#editModal{{ @service.id }}">
+                                                            <i class="bi bi-pencil"></i> Upravit
+                                                        </button>
+                                                        <a href="/prices/delete/{{ @service.id }}"
+                                                           class="btn btn-sm btn-outline-danger"
+                                                           onclick="return confirm('Opravdu chcete smazat tuto službu?')">
+                                                            <i class="bi bi-trash"></i> Smazat
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </true>
+                            <false>
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle"></i> Zatím nejsou k dispozici žádné služby.
+                                </div>
+                            </false>
+                        </check>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modals -->
+<repeat group="{{ @services }}" value="{{ @service }}">
+    <div class="modal fade" id="editModal{{ @service.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ @service.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editModalLabel{{ @service.id }}">Upravit službu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/prices/edit/{{ @service.id }}" method="POST">
+                        <div class="mb-3">
+                            <label for="name{{ @service.id }}" class="form-label">Název služby</label>
+                            <input type="text" class="form-control" id="name{{ @service.id }}" name="name" value="{{ @service.name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description{{ @service.id }}" class="form-label">Popis služby</label>
+                            <textarea class="form-control" id="description{{ @service.id }}" name="description" rows="3" required>{{ @service.description }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price{{ @service.id }}" class="form-label">Cena (Kč)</label>
+                            <input type="number" class="form-control" id="price{{ @service.id }}" name="price" value="{{ @service.price }}" step="0.01" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Uložit změny</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</repeat>
+
+<style>
+    .admin-services-section {
+        padding: 40px 0;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 5px;
+    }
+</style>

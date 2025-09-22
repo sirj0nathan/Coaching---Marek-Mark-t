@@ -1,0 +1,177 @@
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="text-center">
+                <div class="hero-badge">
+                    <i class="bi bi-people"></i>
+                    Administrace uživatelů
+                </div>
+                <h1 class="hero-title">Seznam uživatelů</h1>
+                <p class="hero-description">
+                    Správa uživatelských účtů, rolí a oprávnění v systému
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Unconfirmed Users Section -->
+    <check if="{{ !empty(@unconfirmedUsers) }}">
+        <div class="card shadow-sm mb-4 border-warning">
+            <div class="card-header bg-warning-subtle d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i>Nepotvrzení uživatelé</h5>
+                <span class="badge bg-warning text-dark">{{ count(@unconfirmedUsers) }}</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Jméno</th>
+                            <th>Email</th>
+                            <th>Registrován</th>
+                            <th>Akce</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <repeat group="{{ @unconfirmedUsers }}" value="{{ @user }}">
+                            <tr>
+                                <td>{{ @user.id }}</td>
+                                <td>{{ @user.name }} {{ @user.surname }}</td>
+                                <td>{{ @user.email }}</td>
+                                <td>
+                                    <check if="{{ isset(@user.created) && @user.created }}">
+                                        {{ date('d.m.Y H:i', strtotime(@user.created)) }}
+                                    </check>
+                                    <check if="{{ !isset(@user.created) || !@user.created }}">
+                                        N/A
+                                    </check>
+                                </td>
+                                <td>
+                                    <a href="/admin/users/confirm/{{ @user.id }}" class="btn btn-success" title="Potvrdit uživatele">
+                                        <i class="bi bi-check-circle-fill"></i> Potvrdit
+                                    </a>
+                                    <a href="/admin/users/edit/{{ @user.id }}" class="btn btn-sm btn-outline-primary" title="Upravit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="/admin/users/delete/{{ @user.id }}" class="btn btn-sm btn-outline-danger" title="Smazat"
+                                       onclick="return confirm('Opravdu chcete smazat tohoto uživatele?')">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </check>
+
+    <!-- All Users Section -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+            <h5 class="mb-0">Všichni uživatelé</h5>
+            <div>
+                <a href="/admin/users/create" class="btn btn-success btn-sm">
+                    <i class="bi bi-person-plus"></i> Přidat uživatele
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Jméno</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Registrován</th>
+                        <th>Stav</th>
+                        <th>Akce</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <repeat group="{{ @users }}" value="{{ @user }}">
+                        <tr>
+                            <td>{{ @user.id }}</td>
+                            <td>{{ @user.name }} {{ @user.surname }}</td>
+                            <td>{{ @user.email }}</td>
+                            <td>
+                                <check if="{{ @user.role == 1 }}">
+                                    <span class="badge bg-danger">Administrátor</span>
+                                </check>
+                                <check if="{{ @user.role == 0 }}">
+                                    <span class="badge bg-secondary">Uživatel</span>
+                                </check>
+                            </td>
+                            <td>
+                                <check if="{{ isset(@user.created) && @user.created }}">
+                                    {{ date('d.m.Y H:i', strtotime(@user.created)) }}
+                                </check>
+                                <check if="{{ !isset(@user.created) || !@user.created }}">
+                                    N/A
+                                </check>
+                            </td>
+                            <td>
+                                <check if="{{ @user.confirmed == 1 }}">
+                                    <span class="badge bg-success">Potvrzen</span>
+                                </check>
+                                <check if="{{ @user.confirmed == 0 }}">
+                                    <span class="badge bg-warning text-dark">Nepotvrzen</span>
+                                </check>
+                            </td>
+                            <td>
+                                <check if="{{ @user.approved == 0 }}">
+                                    <a href="/admin/users/approve/@id" class="btn btn-success btn-sm" title="Potvrdit">
+                                        <i class="bi bi-check-circle"></i>
+                                    </a>
+                                </check>
+                                <a href="/admin/users/edit/{{ @user.id }}" class="btn btn-primary btn-sm" title="Upravit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="/admin/users/delete/{{ @user.id }}" class="btn btn-danger btn-sm" title="Smazat"
+                                   onclick="return confirm('Opravdu chcete smazat tohoto uživatele?')">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </repeat>
+
+                    <check if="{{ empty(@users) }}">
+                        <tr>
+                            <td colspan="7" class="text-center py-4">
+                                <i class="bi bi-people text-muted display-4"></i>
+                                <p class="mt-3 text-muted">Zatím nejsou v systému žádní uživatelé.</p>
+                            </td>
+                        </tr>
+                    </check>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <check if="{{ isset(@pagination) && @pagination.pages > 1 }}">
+                <nav aria-label="Stránkování">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item {{ @pagination.currentPage == 1 ? 'disabled' : '' }}">
+                            <a class="page-link" href="/admin/users?page={{ @pagination.currentPage - 1 }}">Předchozí</a>
+                        </li>
+                        <repeat group="{{ range(1, @pagination.pages) }}" value="{{ @page }}">
+                            <li class="page-item {{ @page == @pagination.currentPage ? 'active' : '' }}">
+                                <a class="page-link" href="/admin/users?page={{ @page }}">{{ @page }}</a>
+                            </li>
+                        </repeat>
+                        <li class="page-item {{ @pagination.currentPage == @pagination.pages ? 'disabled' : '' }}">
+                            <a class="page-link" href="/admin/users?page={{ @pagination.currentPage + 1 }}">Další</a>
+                        </li>
+                    </ul>
+                </nav>
+            </check>
+        </div>
+    </div>
+</div>
