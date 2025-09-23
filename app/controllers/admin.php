@@ -81,19 +81,41 @@ class admin
         $base->reroute('/admin/services');
     }
 
-    public function getEditUser(\Base $base, $params){
+    public function getEditUser(\Base $base, $params) {
+        // Load user by ID
         $user = new \models\user();
         $user->load(['id=?', $params['id']]);
+
         if ($user->dry()) {
             \Flash::instance()->addMessage('Uživatel nenalezen', 'danger');
             $base->reroute('/admin/users');
             return;
         }
+
+        // Manually load diet information for this user
+        $diet = new \models\diet();
+        $diet->load(['user=?', $user->id]);  // Using 'user' instead of 'user_id'
+
+        // If no diet record exists, create one
+        if ($diet->dry()) {
+            $diet->user = $user->id;  // Using 'user' instead of 'user_id'
+            $diet->alergies = '';
+            $diet->dietary_preferences = '';
+            $diet->dietary_restrictions = '';
+            $diet->diet_href = '';
+            $diet->save();
+        }
+
+        // Set template variables
         $base->set('user', $user);
+        $base->set('diet', $diet);
         $base->set('title', 'Úprava uživatele');
         $base->set('content', 'admin/edit_user.html');
         echo \Template::instance()->render('index.html');
     }
+
+
+
 
     public function postEditUser(\Base $base, $params)
     {
