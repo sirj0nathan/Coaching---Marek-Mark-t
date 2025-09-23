@@ -21,4 +21,18 @@ class index
         $base->set('content', '/home/about.html');
         echo \Template::instance()->render('index.html');
     }
+
+    public function getIndex(\Base $base)
+    {
+        // Load recent reviews for display
+        $reviewModel = new \models\review();
+        $reviews = $reviewModel->find(['1=1'], ['order' => 'id DESC', 'limit' => 6]);
+
+        // Always set the reviews variable, even if it's empty
+        $base->set('reviews', $reviews ?: []);
+
+        $base->set('title', 'Domů');
+        $base->set('content', '/home/index.html');
+        echo \Template::instance()->render('index.html');
+    }
 }
