@@ -4,6 +4,19 @@ namespace controllers;
 
 class contact
 {
+
+    public function getIndex(\Base $base)
+    {
+        // Load services for the dropdown
+        $servicesModel = new \models\services();
+        $services = $servicesModel->find(['1=1'], ['order' => 'name ASC']);
+
+        $base->set('services', $services);
+        $base->set('title', 'Kontaktujte nás');
+        $base->set('content', 'home/contact.html');
+        echo \Template::instance()->render('index.html');
+    }
+
     public function getContact(\Base $base)
     {
         $base->set('title', 'Kontakt');
