@@ -1,8 +1,10 @@
 <link href="/assets/css/menu.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
     <div class="container">
-        <a class="navbar-brand" href="/">Coaching Portal</a>
+        <a class="navbar-brand" href="/">
+            <i class="bi bi-lightning-charge-fill me-2"></i>
+            Coaching Portal
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,21 +13,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Domů</a>
+                    <a class="nav-link" href="/"><i class="bi bi-house-door me-1"></i> Domů</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">O nás</a>
+                    <a class="nav-link" href="/about"><i class="bi bi-person-fill me-1"></i> O nás</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/prices">Služby a ceny</a>
+                    <a class="nav-link" href="/prices"><i class="bi bi-tags-fill me-1"></i> Služby a ceny</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Kontakt</a>
+                    <a class="nav-link" href="/contact"><i class="bi bi-envelope-fill me-1"></i> Kontakt</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav">
-                <!-- Check if user is logged in before using SESSION.uid -->
                 <check if="{{ isset(@SESSION.uid) }}">
                     <true>
                         <li class="nav-item dropdown">
@@ -58,12 +59,12 @@
                     </true>
                     <false>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">
+                            <a class="nav-link auth-link" href="/login">
                                 <i class="bi bi-box-arrow-in-right me-1"></i> Přihlásit se
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light ms-2" href="/register">
+                            <a class="nav-link register-btn" href="/register">
                                 <i class="bi bi-person-plus me-1"></i> Registrovat se
                             </a>
                         </li>
@@ -73,3 +74,4 @@
         </div>
     </div>
 </nav>
+
