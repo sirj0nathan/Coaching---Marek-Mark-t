@@ -6,10 +6,9 @@
                     <i class="bi bi-shield-lock"></i>
                     Administrační panel
                 </div>
-                <h1 class="hero-title">Správa systému</h1>
+                <h1 class="hero-title">Správa uživatelů</h1>
                 <p class="hero-description">
-                    Vítejte v administračním rozhraní. Zde můžete spravovat uživatele, obsah,
-                    služby a další funkce systému.
+                    Vítejte v administračním panelu. Zde můžete spravovat uživatele, služby a další nastavení systému.
                 </p>
             </div>
         </div>
@@ -17,155 +16,47 @@
 </div>
 
 <div class="container py-5">
-    <div class="row g-4">
-        <!-- Users Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-people me-2 text-primary"></i>Správa uživatelů
-                    </h5>
-                    <p class="card-text">Správa uživatelských účtů, rolí a oprávnění v systému.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/users" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat uživatele
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center p-4">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h3 class="card-title">Správa uživatelů</h3>
+                    <p class="card-text">Zobrazení a správa všech registrovaných uživatelů v systému.</p>
+                    <a href="/admin/users" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-right-circle me-2"></i>Přejít na uživatele
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Content Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-file-earmark-text me-2 text-success"></i>Správa obsahu
-                    </h5>
-                    <p class="card-text">Editace stránek, článků a dalšího obsahu webu.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/content" class="btn btn-outline-success w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat obsah
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center p-4">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-tags-fill"></i>
+                    </div>
+                    <h3 class="card-title">Správa služeb</h3>
+                    <p class="card-text">Nastavení a úprava nabízených služeb a cenových plánů.</p>
+                    <a href="/admin/services" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-right-circle me-2"></i>Přejít na služby
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Services Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-briefcase me-2 text-warning"></i>Správa služeb
-                    </h5>
-                    <p class="card-text">Správa nabízených služeb, ceníků a balíčků.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/services" class="btn btn-outline-warning w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat služby
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Reviews Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-star me-2 text-info"></i>Správa hodnocení
-                    </h5>
-                    <p class="card-text">Moderování a správa recenzí a hodnocení od klientů.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/reviews" class="btn btn-outline-info w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat hodnocení
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Messages Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-envelope me-2 text-danger"></i>Správa zpráv
-                    </h5>
-                    <p class="card-text">Přehled a správa kontaktních formulářů a zpráv od uživatelů.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/messages" class="btn btn-outline-danger w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Zobrazit zprávy
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Diaries Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-journal-text me-2 text-secondary"></i>Správa deníků
-                    </h5>
-                    <p class="card-text">Přehled a správa uživatelských deníků a záznamů.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/diaries" class="btn btn-outline-secondary w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat deníky
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Diet Plans Management -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-egg-fried me-2 text-success"></i>Jídelní plány
-                    </h5>
-                    <p class="card-text">Správa jídelních plánů a dietních preferencí uživatelů.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/diets" class="btn btn-outline-success w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Spravovat plány
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Statistics -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-graph-up me-2 text-primary"></i>Statistiky
-                    </h5>
-                    <p class="card-text">Přehledy návštěvnosti, aktivit a výkonnosti systému.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/statistics" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Zobrazit statistiky
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- System Settings -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="bi bi-gear me-2 text-dark"></i>Nastavení systému
-                    </h5>
-                    <p class="card-text">Konfigurace systému, zálohy a další nastavení.</p>
-                </div>
-                <div class="card-footer bg-transparent border-0">
-                    <a href="/admin/settings" class="btn btn-outline-dark w-100">
-                        <i class="bi bi-arrow-right me-1"></i> Upravit nastavení
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm hover-card">
+                <div class="card-body text-center p-4">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <h3 class="card-title">Správa kontaktů</h3>
+                    <p class="card-text">Úprava kontaktních informací zobrazených na webu.</p>
+                    <a href="/admin/contact" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-right-circle me-2"></i>Upravit kontakty
                     </a>
                 </div>
             </div>
@@ -173,3 +64,84 @@
     </div>
 </div>
 
+
+<style>
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #1a237e, #3949ab);
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 30px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    /* Admin cards */
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .admin-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(26, 35, 126, 0.1);
+        color: #1a237e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto;
+    }
+
+    .card-title {
+        color: #1a237e;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+
+    .card-text {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #1a237e;
+        border-color: #1a237e;
+    }
+
+    .btn-primary:hover {
+        background-color: #3949ab;
+        border-color: #3949ab;
+    }
+</style>
