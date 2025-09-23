@@ -18,7 +18,7 @@ class index
         $base->set('reviews', $reviews ?: []);
 
         $base->set('title', 'O nás');
-        $base->set('content', '/home/index.html');
+        $base->set('content', '/home/about.html');
         echo \Template::instance()->render('index.html');
     }
 }
